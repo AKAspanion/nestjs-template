@@ -1,16 +1,17 @@
-FROM node:18
+FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
+COPY yarn*.lock ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
-RUN npm run prisma:generate
+RUN yarn prisma:generate
 
-RUN npm run build
+RUN yarn build
 
-CMD ["sh", "-c", "if [ \"$NODE_ENV\" = \"development\" ]; then npm run start:migrate:dev; else npm run start:migrate:prod; fi"]
-# CMD ["sh", "-c", "if [ \"$NODE_ENV\" = \"development\" ]; then npm run start:dev; else npm run start:prod; fi"]
+CMD ["sh", "-c", "if [ \"$NODE_ENV\" = \"development\" ]; then yarn start:migrate:dev; else yarn start:migrate:prod; fi"]
+# CMD ["sh", "-c", "if [ \"$NODE_ENV\" = \"development\" ]; then yarn start:dev; else yarn start:prod; fi"]

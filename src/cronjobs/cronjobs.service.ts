@@ -15,8 +15,6 @@ export class CronjobsService {
     console.log(currDate, 'Running cron job every minute');
 
     const activityData = {
-      tenantId: '',
-      identity: '',
       action: 'cron-test',
       status: 'run',
       message: 'Running test cron job',

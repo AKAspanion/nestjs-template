@@ -15,8 +15,6 @@ datasource db {
 
 model AuditLog {
   id         String   @id @default(uuid())
-  tenantId   String   @db.VarChar(255)
-  identity   String?  @db.VarChar(255)
   message    String?  @db.VarChar(255)
   status     String?  @db.VarChar(255)
   action     String?  @db.VarChar(255)

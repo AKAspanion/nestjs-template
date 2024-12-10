@@ -17,10 +17,4 @@ export class AuditPayload {
   @IsOptional()
   @IsObject()
   activityBy?: Record<string, any>;
-
-  @IsString()
-  identity: string;
-
-  @IsString()
-  tenantId: string;
 }

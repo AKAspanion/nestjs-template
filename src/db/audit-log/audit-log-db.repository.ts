@@ -21,9 +21,6 @@ export class AuditLogDbRepository {
       if (data && typeof data.data === 'object') {
         newData.data = JSON.stringify(data.data);
       }
-      if (newData?.tenantId === undefined) {
-        newData.tenantId = '';
-      }
 
       return await this.prisma.auditLog.create({
         data: newData,

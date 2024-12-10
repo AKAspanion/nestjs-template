@@ -75,8 +75,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     };
 
     const auditLogEvent = {
-      tenantId: '',
-      identity: '',
       message: 'errorHandling',
       status: 'failure',
       action: 'SystemError',
