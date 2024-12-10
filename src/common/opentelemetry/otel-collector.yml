@@ -1,0 +1,43 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+        cors:
+          allowed_origins:
+            - 'http://*'
+            - 'https://*'
+
+exporters:
+  otlp:
+    endpoint: 'jaeger:4317'
+    tls:
+      insecure: true
+
+  prometheus:
+    endpoint: '0.0.0.0:8889'
+    const_labels:
+      label1: value1
+
+processors:
+  batch: # Handles batching of data before exporting
+
+extensions:
+  health_check:
+  pprof:
+    endpoint: :1888
+  zpages:
+    endpoint: :55679
+
+service:
+  extensions: [pprof, zpages, health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch] # Process traces in batches
+      exporters: [otlp] # Export traces to Jaeger
+
+    metrics:
+      receivers: [otlp]
+      processors: [batch] # Process metrics in batches
+      exporters: [prometheus] # Export metrics to Prometheus

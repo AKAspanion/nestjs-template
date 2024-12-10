@@ -1,0 +1,9 @@
+*
+!/package.json
+!/yarn.lock
+!/tsconfig.build.json
+!/tsconfig.json
+!/nest-cli.json
+!/public
+!/views
+!/src
